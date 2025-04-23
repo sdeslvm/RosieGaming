@@ -167,6 +167,7 @@ struct GameLoader_1E6704B4Overlay: View {
     @StateObject private var data: GameLoader_1E6704B4Model
 //    @ObservedObject private var orientationManager: OrientationManager = OrientationManager.shared
     private let stamp = "KEY_1E6704B4_77"
+    @StateObject private var settings = SettingsManager.shared
     
     init(data: GameLoader_1E6704B4Model) {
         _data = StateObject(wrappedValue: data)
@@ -197,6 +198,11 @@ struct GameLoader_1E6704B4Overlay: View {
         }
         .onAppear {
             OrientationManager.shared.isHorizontalLock = false
+                
+                    if settings.isMusicOn {
+                        settings.stopMusic()
+                    }
+
         }
     }
 }
